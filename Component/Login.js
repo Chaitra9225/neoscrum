@@ -10,7 +10,7 @@ import {
   Link,
   TouchableOpacity,
 } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+//import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SignUp from './SignUp';
@@ -108,9 +108,9 @@ class Login extends Component {
                 this.onPasswordCheck(f);
               }}
               style={styles.inputField}
-              placeholder="*****"
+              placeholder="********"
               secureTextEntry={true}>
-              {eye}
+              
             </TextInput>
             <Text style={{paddingLeft: 10, color: 'red'}}>
               {this.state.checkPassword}
@@ -136,9 +136,9 @@ class Login extends Component {
 }
 
 /* Icon For USer */
-const user = <FontAwesome5 name={'user'} solid />;
+//const user = <FontAwesome5 name={'user'} solid />;
 /* Icon For Password */
-const eye = <FontAwesome5 name={'eye-slash'} solid />;
+//const eye = <FontAwesome5 name={'eye-slash'} solid />;
 /* Styles */
 const styles = StyleSheet.create({
   container1: {
