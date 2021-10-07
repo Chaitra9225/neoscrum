@@ -10,7 +10,9 @@ import {
   Link,
   TouchableOpacity,
 } from 'react-native';
-//import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+//import ImagePicker from 'react-native-image-crop-picker';
+import Icon from 'react-native-vector-icons/FontAwesome5'
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SignUp from './SignUp';
@@ -62,17 +64,14 @@ class Login extends Component {
     return (
       <View style={{backgroundColor: '#f0f8ff', flex: 1}}>
         <View style={styles.container1}>
-          <View style={{flexDirection: 'row', alignSelf: 'center'}}>
-            <Text style={{fontSize: 50, color: 'black', fontWeight: 'bold'}}>
-              Neo
-            </Text>
-
-            <Text style={{fontSize: 50, color: 'red', fontWeight: 'bold'}} > Scrum </Text>
-          </View>
+        <View style={{flexDirection: 'row', alignSelf:"center"}}>
+                  <Text style={{fontSize:50 , color:'black',fontWeight:"bold"   }}>Neo</Text>
+                  <Text style={{fontSize:50 , color:'red',fontWeight:"bold"   }}>Scrum</Text>
+                  </View>
         </View>
 
-        <View style={{paddingTop: 50}}>
-          <Text style={{fontSize: 40, color: 'black', alignSelf: 'center'}}>
+        <View style={{paddingTop: 10, paddingBottom:40}}>
+          <Text style={{fontSize: 35, color: 'black',  alignSelf: 'center', fontWeight:'600'}}>
             Login
           </Text>
         </View>
@@ -80,16 +79,15 @@ class Login extends Component {
         {/* Username */}
         <View>
           <View>
-            <Text style={styles.Username}>UserName</Text>
+            <Text style={{fontWeight:'700', fontSize:18}}>UserName</Text>
           </View>
           <View style={{width: Dimensions.get('window').width}}>
-            <TextInput
-              onChangeText={e => {
-                this.onEmailChange(e);
-              }}
+            <TextInput style={{height: 40,margin: 12, borderBottomWidth: 2,paddingLeft: 10, borderColor:'black'}}
+              onChangeText={e => {this.onEmailChange(e);}}
               style={styles.inputField}
               placeholder="test@gmail.com"
             />
+            {user}
             <Text style={{paddingLeft: 10, color: 'red'}}>
               {this.state.checkEmail}
             </Text>
@@ -99,46 +97,43 @@ class Login extends Component {
 
         <View>
           <View>
-            <Text style={styles.Username}>Password</Text>
+            <Text style={{fontWeight:'700', fontSize:18}}>Password</Text>
           </View>
-          <View style={{width: Dimensions.get('window').width}}>
-            <TextInput
+          <View style={{width: Dimensions.get('window').width }}>
+            <TextInput style={{height: 40,margin: 12, borderBottomWidth:3,paddingLeft: 10, borderColor:'black',width:900}}
               type="password"
               onChangeText={f => {
                 this.onPasswordCheck(f);
               }}
               style={styles.inputField}
               placeholder="********"
-              secureTextEntry={true}>
-              
+              secureTextEntry={true}> 
             </TextInput>
+
+            {eye}
             <Text style={{paddingLeft: 10, color: 'red'}}>
               {this.state.checkPassword}
             </Text>
           </View>
-          <View style={{width: Dimensions.get('window').width, padding: 10}}>
-            <Button
-              onPress={() => {
-                this.checkValidation();
-              }}
-              style={{borderRadius: 500}}
-              title="Login"
-            />
-          </View>
-
+          
+          <TouchableOpacity style={styles.signUpContainer}>
+        <Text style={styles.signUpText} onPress={()=>{
+           this.checkValidation();
+        }}>LOGIN</Text>
+      </TouchableOpacity>
           <TouchableOpacity onPress={() => this.submit()}>
-            <Text> Don't Have a Account Sign up?</Text>
+            <Text style={{alignSelf:'center', color: 'black'}}> Don't Have a Account Sign up?</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </View>   
     );
   }
 }
 
 /* Icon For USer */
-//const user = <FontAwesome5 name={'user'} solid />;
+const user = <Icon name={'user'} solid style={{color:"black", fontSize:15}}/>;
 /* Icon For Password */
-//const eye = <FontAwesome5 name={'eye-slash'} solid />;
+const eye = <FontAwesome5 name={'eye-slash'} solid style={{color:"black", fontSize:15}} />;
 /* Styles */
 const styles = StyleSheet.create({
   container1: {
@@ -150,14 +145,26 @@ const styles = StyleSheet.create({
     fontSize: 18,
     paddingLeft: 10,
   },
+  signUpContainer: {
+    backgroundColor: "blue",
+    borderRadius:25,
+    padding: 10,
+    margin:19,
+  },
+  signUpText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "white",
+  },
   user: {
     position: 'absolute',
     right: 10,
   },
   inputField: {
-    height: 40,
+    height:40,
     margin: 12,
-    borderBottomWidth: 1,
+    borderBottomWidth: 2,
     paddingLeft: 10,
   },
 });
