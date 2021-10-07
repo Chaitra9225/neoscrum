@@ -10,7 +10,7 @@ import {
   Link,
   TouchableOpacity,
 } from 'react-native';
-//import ImagePicker from 'react-native-image-crop-picker';
+import ImagePicker from 'react-native-image-crop-picker';
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {NavigationContainer} from '@react-navigation/native';

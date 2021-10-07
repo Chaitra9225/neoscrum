@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import ImagePicker from 'react-native-image-crop-picker';
+
 import {
   Text,
   TextInput,
@@ -9,6 +11,8 @@ import {
   Button,
   Link,
   TouchableOpacity,
+  ImageBackground,
+  Image,
 } from 'react-native';
 //import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {NavigationContainer} from '@react-navigation/native';
@@ -18,11 +22,13 @@ class Login extends Component {
   constructor() {
     super();
     this.state = {
+      img:'',
       checkEmail: '',
       checkPassword: '',
     };
   }
-  onEmailChange(e) {
+
+onEmailChange(e) {
     let regx =
       /^[a-zA-Z]{1,}?([a-zA-Z1-9]{1,})?([_])?([.])?([a-zA-Z1-9]{1,})?([.])?([a-zA-Z1-9]{1,})[@]?([a-z]{1,})?([.])?([a-z]{1,})?([.])?([a-z]{1,})$/;
     this.setState({checkEmail: ''});
@@ -45,6 +51,17 @@ class Login extends Component {
     } else {
       this.setState({checkPassword: ''});
     }
+  }
+
+  takephoto=()=>{
+    ImagePicker.openCamera({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      console.log(image);
+      this.setState({img:image.path})
+    }).catch(e=>console.log(e));
   }
   checkValidation() {
     let state1 = onEmailChange();
@@ -110,7 +127,10 @@ class Login extends Component {
             </Text>
           </View>
           <View>
-            <Text>+ Add picture</Text>
+            <Text onPress={this.takephoto}>+ Add picture</Text>
+            <View style={{height:100,width:100,borderRadius:15,justifyContent:'center',alignItems:'center'}}>
+            <Image source={{uri:this.state.img}} height={100} width={100}/>
+            </View>
           </View>
           
           <TouchableOpacity style={styles.signUpContainer}>
